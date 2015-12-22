@@ -1,0 +1,30 @@
+{
+  "name": "contacts",
+  "version": "0.0.1",
+  "authors": [
+    "andrew <andrew.zhyl@gmail.com>"
+  ],
+  "description": "contacts",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "contacts"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "angular": "~1.4.8",
+    "jquery": "~2.1.4",
+    "angular-route": "~1.4.8",
+    "angular-resource": "~1.4.8"
+  }
+}
