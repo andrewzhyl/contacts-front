@@ -5,8 +5,12 @@ angular.module('ContactsApp', [
     .config(function($routeProvider, $locationProvider) {
         $routeProvider
             .when('/contacts', {
-                controller: 'ListController',
+                controller: 'ListCtrl',
                 templateUrl: 'views/list.html'
+            })
+            .when('/contacts/new', {
+                controller: 'NewCtrl',
+                templateUrl: 'views/new.html'
             });
         $locationProvider.html5Mode(true);
     });
