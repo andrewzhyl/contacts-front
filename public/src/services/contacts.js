@@ -3,25 +3,37 @@ angular.module('ContactsApp')
         return $resource("/proxy/api/v1/contacts/:id", {
             id: "@id"
         }, {
-            'create': {
-                method: 'POST'
-            },
-            'index': {
-                method: 'GET',
+            query: {
                 isArray: true,
-                transformResponse: function(data, headers) {
+                method: 'GET',
+                params: {},
+                transformResponse: function(data) {
                     return angular.fromJson(data).contacts;
                 }
             },
-            'show': {
+            get: {
                 method: 'GET',
-                isArray: false
+                params: {
+                    id: '@id'
+                },
+                isArray: false,
+                transformResponse: function(data, headers) {
+                    return angular.fromJson(data).contact;
+                }
             },
-            'update': {
-                method: 'PUT'
+            save: {
+                method: 'POST'
             },
-            'destroy': {
-                method: 'DELETE'
+            update: {
+                method: 'PUT',
+                params: {
+                    id: '@id'
+                }
+            },
+            delete: {
+                method: 'DELETE',
+                params: {}
             }
+
         });
     })

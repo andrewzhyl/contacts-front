@@ -1,0 +1,35 @@
+<!-- USERNAME -->
+<div class="form-group" ng-class="{ 'has-error' : newContact.username.$invalid && newContact.username.$touched }">
+    <label class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-6">
+        <input type="text" name="username" class="form-control" ng-model="contact.username" ng-minlength="3" ng-maxlength="8" value="{{ contact.username }}" server-error>
+        <div class="help-block" ng-messages="newContact.username.$error" ng-show="newContact.username.$touched">
+            <p ng-message="minlength">Your Username is too short.</p>
+            <p ng-message="maxlength">Your Username is too long.</p>
+            <p ng-message="server">{{ errors.username }}</p>
+        </div>
+    </div>
+</div>
+<!-- EMAIL -->
+<div class="form-group" ng-class="{ 'has-error' : newContact.email.$invalid && !newContact.email.$pristine }">
+    <label class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-6">
+        <input type="email" name="email" class="form-control" ng-model="contact.email" required server-error>
+        <div class="help-block" ng-messages="newContact.email.$error" ng-show="newContact.email.$touched">
+            <p ng-message="email">This needs to be a valid email.</p>
+            <p ng-message="server">{{ errors.email }}</p>
+        </div>
+    </div>
+</div>
+<!-- Phone_number -->
+<div class="form-group" ng-class="{ 'has-error' : newContact.phone_number.$invalid && !newContact.phone_number.$pristine }">
+    <label class="col-sm-2 control-label">Phone number</label>
+    <div class="col-sm-6">
+        <input type="number" name="phone_number" class="form-control" string-to-number ng-model="contact.phone_number" ng-minlength="11" ng-maxlength="11" required server-error value="{{ contact.phone_number }}">
+        <div class="help-block" ng-messages="newContact.phone_number.$error" ng-show="newContact.phone_number.$touched">
+            <p ng-message="required">Valid phone number is required.</p>
+            <p ng-message="minlength || maxlength">phone number should be 11 digits.</p>
+            <p ng-message="server">{{ errors.phone_number }}</p>
+        </div>
+    </div>
+</div>
