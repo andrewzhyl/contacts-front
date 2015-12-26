@@ -1,7 +1,63 @@
-var app = angular.module('ContactsApp')
+var app = angular.module('ContactsApp.contacts', ['ui.router']);
 
-app.controller('ListCtrl', function($scope, Contact, $location) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+    $stateProvider
+        .state('contacts', {
+            url: '/contacts',
+            views: {
+                '': {
+                    templateUrl: 'views/index.html'
+                },
+                'content@contacts': {
+                    templateUrl: 'views/contacts/list.html',
+                    controller: 'ContactsListCtrl'
+                },
+                'navbar@contacts': {
+                    templateUrl: 'views/contacts/_nav.html'
+                }
+            }
+
+        })
+        .state('contacts_new', {
+            url: '/contacts/new',
+            views: {
+                '': {
+                    templateUrl: 'views/index.html'
+                },
+                'content@contacts_new': {
+                    templateUrl: 'views/contacts/new.html',
+                    controller: 'ContactsNewCtrl'
+                },
+                'navbar@contacts_new': {
+                    templateUrl: 'views/contacts/_nav.html'
+                }
+            }
+
+        })
+        .state('contactsEdit', {
+            url: '/contacts/:id/edit',
+            views: {
+                '': {
+                    templateUrl: 'views/index.html'
+                },
+                'content@contactsEdit': {
+                    templateUrl: 'views/contacts/edit.html',
+                    controller: 'ContactsUpdateCtr'
+                },
+                'navbar@contactsEdit': {
+                    templateUrl: 'views/contacts/_nav.html'
+                }
+            }
+
+        });
+});
+
+app.controller('ContactsListCtrl', function($scope, Contact, Auth, $location) {
     $scope.PAGE = 'all';
+    // console.log('=====');
+    // console.log(Auth.currentUser());
+
     $scope.contacts = Contact.query();
     $scope.fields = ['username', 'email', 'phone_number'];
 
@@ -25,9 +81,9 @@ app.controller('ListCtrl', function($scope, Contact, $location) {
             });
         }
     }
-})
+});
 
-app.controller('NewCtrl', function($scope, Contact, $location) {
+app.controller('ContactsNewCtrl', function($scope, Contact, $location) {
     $scope.PAGE = 'new';
     $scope.contact = new Contact()
 
@@ -52,11 +108,11 @@ app.controller('NewCtrl', function($scope, Contact, $location) {
             }, failure);
         }
     };
-})
+});
 
-app.controller('UpdateCtr', function($scope, Contact, $routeParams, $location) {
+app.controller('ContactsUpdateCtr', function($scope, Contact, $stateParams, $location) {
     $scope.contact = Contact.get({
-        id: $routeParams.id
+        id: $stateParams.id
     })
     $scope.formsValid = false;
     $scope.submitForm = function() {
@@ -81,4 +137,4 @@ app.controller('UpdateCtr', function($scope, Contact, $routeParams, $location) {
         }
 
     };
-})
+});

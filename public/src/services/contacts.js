@@ -1,4 +1,4 @@
-angular.module('ContactsApp')
+angular.module('ContactsApp.contacts')
     .factory('Contact', function($resource) {
         return $resource("/proxy/api/v1/contacts/:id", {
             id: "@id"
@@ -30,10 +30,11 @@ angular.module('ContactsApp')
                     id: '@id'
                 }
             },
-            delete: {
+            destroy: {
                 method: 'DELETE',
-                params: {}
+                params: {
+                    id: '@id'
+                },
             }
-
         });
     })

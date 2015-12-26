@@ -16,7 +16,7 @@ app.use('/proxy', proxy('localhost:3005', {
 }));
 
 app.get("*", function(req, res) {
-    res.sendFile(path.join(publicDir, 'main.html'));
+    res.sendFile(path.join(publicDir, 'views/main.html'));
 });
 
 app.listen(port, function() {
