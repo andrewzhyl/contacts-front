@@ -14,36 +14,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
         });
 });
 
-// .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-//     $routeProvider.when('/login', {
-//         templateUrl: 'views/sessions/login.html',
-//         controller: 'LoginCtrl'
-//     });
-//     $locationProvider.html5Mode(true);
-// }])
-
-app.controller('LoginCtrl', function($rootScope, $scope, $location, $state, Auth) {
+app.controller('LoginCtrl', function($scope, $location, $state, Auth) {
     $scope.user = {};
 
     $scope.login = function() {
         $scope.errors = {}
 
-        // function failure(response) {
-        //     angular.forEach(response.data.errors, function(errors, field) {
-        //         console.log(errors);
-        //         $scope.errors[field] = errors.join(', ');
-        //         $scope.newContact[field].$setValidity("server", false);
-        //     });
-        // }
-
         if ($scope.loginForm.$valid) {
             $scope.errors = [];
             Auth.login($scope.user).success(function() {
-                $rootScope.currentUser = Auth.currentUser();
                 $state.go('welcome');
             }).error(function(response) {
-                console.log('-------');
-                console.log(response);
 
                 $scope.errors.password = response.error;
                 $scope.loginForm.password.$setValidity("server", false);
@@ -51,18 +32,29 @@ app.controller('LoginCtrl', function($rootScope, $scope, $location, $state, Auth
         }
 
     }
-})
+});
 
-// angular.module('ContactsApp.signup', ['ngRoute'])
 
-// .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-//     $routeProvider.when('/signup', {
-//         templateUrl: 'views/sessions/signup.html',
-//         controller: 'SignupCtrl'
-//     });
-//     $locationProvider.html5Mode(true);
-// }])
+app.controller('SignupCtrl', function($scope, $location, $state, Auth) {
+    $scope.user = {};
 
-.controller('SignupCtrl', [function($scope, $location) {
+    function failure(response) {
+        angular.forEach(response.errors, function(errors, field) {
+            $scope.errors[field] = errors.join(', ');
+            $scope.signupForm[field].$setValidity("server", false);
+        });
+    }
 
-}]);
+    $scope.signUp = function() {
+        $scope.errors = {}
+
+        if ($scope.signupForm.$valid) {
+            Auth.register({
+                user: $scope.user
+            }).success(function() {
+                $state.go('login');
+            }).error(failure);
+
+        }
+    }
+});

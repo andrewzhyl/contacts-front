@@ -55,7 +55,6 @@ angular.module('ContactsApp').factory("Auth", function($rootScope, $http, localS
             register.success(function(result) {
                 localStorageService.set('auth_token', result.token);
             });
-
             return register;
         },
         logout: function() {
