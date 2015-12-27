@@ -4,11 +4,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
         .state('contacts', {
+            templateUrl: 'views/admin.html'
+        })
+        .state('contacts.list', {
             url: '/contacts',
             views: {
-                '': {
-                    templateUrl: 'views/index.html'
-                },
                 'content@contacts': {
                     templateUrl: 'views/contacts/list.html',
                     controller: 'ContactsListCtrl'
@@ -17,46 +17,35 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
                     templateUrl: 'views/contacts/_nav.html'
                 }
             }
-
         })
-        .state('contacts_new', {
+        .state('contacts.new', {
             url: '/contacts/new',
             views: {
-                '': {
-                    templateUrl: 'views/index.html'
-                },
-                'content@contacts_new': {
+                'content@contacts': {
                     templateUrl: 'views/contacts/new.html',
                     controller: 'ContactsNewCtrl'
                 },
-                'navbar@contacts_new': {
+                'navbar@contacts': {
                     templateUrl: 'views/contacts/_nav.html'
                 }
             }
-
         })
-        .state('contactsEdit', {
+        .state('contacts.edit', {
             url: '/contacts/:id/edit',
             views: {
-                '': {
-                    templateUrl: 'views/index.html'
-                },
-                'content@contactsEdit': {
+                'content@contacts': {
                     templateUrl: 'views/contacts/edit.html',
                     controller: 'ContactsUpdateCtr'
                 },
-                'navbar@contactsEdit': {
+                'navbar@contacts': {
                     templateUrl: 'views/contacts/_nav.html'
                 }
             }
-
         });
 });
 
 app.controller('ContactsListCtrl', function($scope, Contact, Auth, $location) {
     $scope.PAGE = 'all';
-    // console.log('=====');
-    // console.log(Auth.currentUser());
 
     $scope.contacts = Contact.query();
     $scope.fields = ['username', 'email', 'phone_number'];

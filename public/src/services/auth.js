@@ -20,7 +20,7 @@ angular.module('ContactsApp')
                 // TODO: revisit for the 403
                 if (response.status === 401 || response.status === 403) {
                     localStorageService.remove('auth_token');
-                    $injector.get('$state').go('login');
+                    $injector.get('$state').go('sessions.login');
                 }
 
                 return $q.reject(response);

@@ -2,16 +2,39 @@ var app = angular.module('ContactsApp.sessions', ['ngRoute', 'LocalStorageModule
 
 app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-        .state('login', {
-            url: '/login',
-            templateUrl: 'views/sessions/login.html',
-            controller: 'LoginCtrl'
+        .state('sessions', {
+            templateUrl: 'views/sessions.html'
         })
-        .state('signup', {
+        .state('sessions.login', {
+            url: '/login',
+            views: {
+                'content@sessions': {
+                    templateUrl: 'views/sessions/login.html',
+                    controller: 'LoginCtrl'
+                }
+            }
+        })
+        .state('sessions.signup', {
             url: '/signup',
-            templateUrl: 'views/sessions/signup.html',
-            controller: 'SignupCtrl'
+            views: {
+                'content@sessions': {
+                    templateUrl: 'views/sessions/signup.html',
+                    controller: 'SignupCtrl'
+                }
+            }
         });
+
+
+    // .state('login', {
+    //     url: '/login',
+    //     templateUrl: 'views/sessions/login.html',
+    //     controller: 'LoginCtrl'
+    // })
+    // .state('signup', {
+    //     url: '/signup',
+    //     templateUrl: 'views/sessions/signup.html',
+    //     controller: 'SignupCtrl'
+    // });
 });
 
 app.controller('LoginCtrl', function($scope, $location, $state, Auth) {

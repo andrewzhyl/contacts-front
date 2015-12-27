@@ -9,7 +9,7 @@ angular.module('ContactsApp.welcome', ['ui.router', 'ContactsApp.users'])
             url: '/welcome',
             views: {
                 '': {
-                    templateUrl: 'views/index.html'
+                    templateUrl: 'views/admin.html'
                 },
                 'content@welcome': {
                     templateUrl: 'views/welcome/index.html',
@@ -22,5 +22,5 @@ angular.module('ContactsApp.welcome', ['ui.router', 'ContactsApp.users'])
 
 
 .controller('WelcomeCtrl', function($rootScope, $scope) {
-   // $rootScope.currentUser = Auth.currentUser();
+
 });

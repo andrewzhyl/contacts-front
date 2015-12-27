@@ -34,7 +34,7 @@ angular.module('ContactsApp')
                 scope.currentUser = Auth.currentUser();
                 scope.logout = function() {
                     Auth.logout();
-                    $state.go('login');
+                    $state.go('sessions.login');
                 }
             }
         };
