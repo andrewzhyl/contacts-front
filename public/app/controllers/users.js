@@ -4,43 +4,36 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $stateProvider
         .state('users', {
+            templateUrl: 'views/admin.html'
+        })
+        .state('users.list', {
             url: '/users',
             views: {
-                '': {
-                    templateUrl: 'views/index.html'
-                },
                 'content@users': {
-                    templateUrl: 'views/users/index.html',
+                    templateUrl: 'views/users/list.html',
                     controller: 'UsersListCtrl'
                 },
-                'navbar@users':{
+                'navbar@users': {
                     templateUrl: 'views/users/_nav.html'
                 }
             }
-
         });
 
 });
 
-app.controller('UsersListCtrl', ['$scope', function($scope, Contact, $location) {
+app.controller('UsersListCtrl', function($scope, Contact, Auth, $location) {
     $scope.PAGE = 'all';
-    $scope.contacts = [
-        {
-            username: 'Macallan 12',
-            price: 50
-        },
-        {
-            username: 'Chivas Regal Royal Salute',
-            price: 10000
-        },
-        {
-            username: 'Glenfiddich 1937',
-            price: 20000
-        }
-    ];
+    $scope.contacts = [{
+        username: 'Macallan 12',
+        price: 50
+    }, {
+        username: 'Chivas Regal Royal Salute',
+        price: 10000
+    }, {
+        username: 'Glenfiddich 1937',
+        price: 20000
+    }];
 
-
-    //Contact.query();
     $scope.fields = ['username', 'email', 'phone_number'];
 
     $scope.sort = function(field) {
@@ -63,4 +56,4 @@ app.controller('UsersListCtrl', ['$scope', function($scope, Contact, $location) 
             });
         }
     }
-}]);
+});

@@ -23,18 +23,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         });
-
-
-    // .state('login', {
-    //     url: '/login',
-    //     templateUrl: 'views/sessions/login.html',
-    //     controller: 'LoginCtrl'
-    // })
-    // .state('signup', {
-    //     url: '/signup',
-    //     templateUrl: 'views/sessions/signup.html',
-    //     controller: 'SignupCtrl'
-    // });
 });
 
 app.controller('LoginCtrl', function($scope, $location, $state, Auth) {

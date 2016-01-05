@@ -9,13 +9,14 @@
                 <div class="col-sm-6">
                     <input type="email" name="email" class="form-control" ng-model="user.email" required server-error>
                     <div class="help-block" ng-messages="signupForm.email.$error" ng-show="signupForm.email.$touched">
+                        <p ng-message="required">Email is required.</p>
                         <p ng-message="email">请输入正确的 email.</p>
                         <p ng-message="server">{{ errors.email }}</p>
                     </div>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine }">
-                <label for="email" class="col-sm-2 control-label">password:</label>
+            <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$touched }">
+                <label for="password" class="col-sm-2 control-label">password:</label>
                 <div class="col-sm-6">
                     <input type="password" name="password" class="form-control" ng-model="user.password" required server-error>
                     <div class="help-block" ng-messages="signupForm.password.$error" ng-show="signupForm.password.$touched">
@@ -24,12 +25,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : signupForm.password_confirmation.$invalid && !signupForm.password_confirmation.$pristine }">
-                <label for="email" class="col-sm-2 control-label">Password Confirmation:</label>
+            <div class="form-group" ng-class="{ 'has-error' : signupForm.password_confirmation.$invalid && signupForm.password_confirmation.$touched }">
+                <label for="password_confirmation" class="col-sm-2 control-label">Password Confirmation:</label>
                 <div class="col-sm-6">
                     <input type="password" name="password_confirmation" class="form-control" ng-model="user.password_confirmation" required server-error compare-to="user.password">
                     <div class="help-block" ng-messages="signupForm.password_confirmation.$error" ng-show="signupForm.password_confirmation.$touched">
-                        <p ng-message="required">密码必填.</p>
+                        <p ng-message="required">密码确认必填.</p>
                         <div ng-message="compareTo">Must match the previous entry</div>
                         <p ng-message="server">{{ errors.password_confirmation }}</p>
                     </div>
@@ -37,12 +38,13 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-primary"> 注册</button>
+                    <button class="btn btn-primary"  ng-disabled="signupForm.$invalid"> 注册</button>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    已有账户？ <a href ui-sref="sessions.login">登陆</a> <!-- <a href="/login">登陆</a> -->
+                    已有账户？ <a href ui-sref="sessions.login">登陆</a>
+                    <!-- <a href="/login">登陆</a> -->
                 </div>
             </div>
         </form>

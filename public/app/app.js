@@ -8,5 +8,6 @@ angular.module('ContactsApp', [
     'ContactsApp.users',
     'ContactsApp.contacts'
 ]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+   $urlRouterProvider.otherwise("/login");
     $locationProvider.html5Mode(true);
 }]);
