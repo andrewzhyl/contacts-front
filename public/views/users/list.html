@@ -9,7 +9,7 @@
                 <span ng-show='sort.field === field && !sort.order' class='glyphicon glyphicon-chevron-down'></span>
                 <span ng-show='sort.field !== field && sort.order' class='glyphicon glyphicon-chevron-up'></span>
             </th>
-            <th> Actions </th>
+            <th> 操作 </th>
         </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
                 {{ contact[field]}}
             </td>
             <td>
-                <a href="" ng-click="delete(contact.id)">Remove</a>
+                <a href="#" ng-click="delete(contact.id)">Remove</a>
             </td>
         </tr>
     </tbody>

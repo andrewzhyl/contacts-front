@@ -21,20 +21,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 });
 
-app.controller('UsersListCtrl', function($scope, Contact, Auth, $location) {
+app.controller('UsersListCtrl', function($scope, User, Auth, $location) {
     $scope.PAGE = 'all';
-    $scope.contacts = [{
-        username: 'Macallan 12',
-        price: 50
-    }, {
-        username: 'Chivas Regal Royal Salute',
-        price: 10000
-    }, {
-        username: 'Glenfiddich 1937',
-        price: 20000
-    }];
+    $scope.users = User.query();
 
-    $scope.fields = ['username', 'email', 'phone_number'];
+    $scope.fields = ['username', 'email'];
 
     $scope.sort = function(field) {
         $scope.sort.field = field;
