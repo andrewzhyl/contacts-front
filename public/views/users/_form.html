@@ -1,0 +1,25 @@
+<!-- USERNAME -->
+<div class="form-group" ng-class="{ 'has-error' : newUser.username.$invalid && newUser.username.$touched }">
+    <label class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-6">
+        <input type="text" name="username" class="form-control" ng-model="contact.username" ng-minlength="3" ng-maxlength="8" value="{{ contact.username }}" server-error required>
+        <div class="help-block" ng-messages="newUser.username.$error" ng-show="newUser.username.$touched">
+            <p ng-message="required">Username is required.</p>
+            <p ng-message="minlength">Your Username is too short.</p>
+            <p ng-message="maxlength">Your Username is too long.</p>
+            <p ng-message="server">{{ errors.username }}</p>
+        </div>
+    </div>
+</div>
+<!-- EMAIL -->
+<div class="form-group" ng-class="{ 'has-error' : newUser.email.$invalid && newUser.email.$touched  }">
+    <label class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-6">
+        <input type="email" name="email" class="form-control" ng-model="contact.email" required server-error>
+        <div class="help-block" ng-messages="newUser.email.$error" ng-show="newUser.email.$touched">
+            <p ng-message="required">Email is required.</p>
+            <p ng-message="email">This needs to be a valid email.</p>
+            <p ng-message="server">{{ errors.email }}</p>
+        </div>
+    </div>
+</div>

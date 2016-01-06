@@ -1,0 +1,9 @@
+<h2>New User</h2>
+<form name='newUser' ng-submit="submitForm()" novalidate class="form-horizontal">
+    <div ng-include src="'/views/contacts/_form.html'"></div>
+    <div class="row form-group">
+        <div class="col-sm-offset-2">
+            <button class="btn btn-primary" ng-disabled="newUser.$invalid"> Create Contact </button>
+        </div>
+    </div>
+</form>
