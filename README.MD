@@ -10,8 +10,9 @@
 ## Quick start
 You will need to have bower installed globally into your node environment.
 
-  $ npm install -g bower
-
-  $ npm install
-  $ bower install
-  $ nodemon server.js
+```
+$ npm install -g bower nodemon
+$ npm install
+$ bower install
+$ nodemon server.js
+```
