@@ -36,7 +36,7 @@ app.controller('LoginCtrl', function($scope, $location, $state, Auth) {
             Auth.login($scope.user).success(function() {
                 $state.go('welcome');
             }).error(function(response) {
-
+                console.log(response.error);
                 $scope.errors.password = response.error;
                 $scope.loginForm.password.$setValidity("server", false);
             });
